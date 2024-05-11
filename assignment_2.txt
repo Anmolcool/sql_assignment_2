@@ -1,0 +1,76 @@
+create database assignment_2;
+use assignment_2;
+
+create table emp_sal(EID varchar(5), DEPT varchar(10), DESI varchar(30), DOJ date,  SALARY int);
+insert into emp_sal values ("E001", "HR", "Manager", "2024-01-15", 60000), ("E002", "Finance", "Accountant", "2023-11-20", 55000), ("E003", "Marketing", "Marketing Specialist", "2024-03-10", 62000), ("E004", "IT", "Software Engineer", "2024-02-05", 65000), ("E005", "Operations", "Operations Manager", "2023-12-08", 63000), ("E006", "Sales", "Sales Representative", "2024-04-18", 58000), ("E006", "Sales", "Sales Representative", "2024-04-18", 58000);
+
+select *from emp_sal;
+-- Increase the salary of all Managers by 10%
+
+select salary 
+from emp_sal
+
+having salary = salary*0.1;
+
+select *, salary*10/100 '10%_of_sal_HRA' from emp_sal;
+
+select *, salary+ 10%_of_sal_HRA 'icreament' from emp_sal;
+
+select salary*10/100 as 'salary_per_inc'
+from emp_sal;
+having salary + salary_per_inc;
+
+alter table emp_sal
+add salary_inc int;
+
+select salary*10/100 as salary_inc
+from emp_sal;
+
+alter table emp_sal
+drop column salary_inc;
+
+alter table emp_sal
+add column salary_icr decimal(10,2);
+
+update emp_sal
+set salary_icr = salary*0.1;
+
+select *from emp_sal;
+
+alter table emp_sal
+add column total_sal decimal(10,1);
+
+update emp_sal
+set total_sal = salary + salary_icr; 
+
+select *from emp_sal
+order by EID asc;
+
+-- delete duplicate from table
+
+delete from emp_sal
+where EID = 'E001'
+limit 1;
+
+-- delete duplicate from table, thaat cann,t be done by using 1.) joins & 2.) row_number()
+
+delete t1
+from emp_sal t1
+inner join emp_sal t2 where t1.EID > t2.EID;
+    
+DELETE t1 FROM your_table t1
+INNER JOIN your_table t2 
+WHERE t1.id > t2.id 
+AND t1.EmployeeID = t2.EmployeeID ;
+
+select *from emp_sal;
+
+alter table emp_sal
+drop column salary_icr;
+
+delete from emp_sal
+where EID = 'E006'
+limit 1;
+
+-- Increase the salary of all Managers by 10%
+
